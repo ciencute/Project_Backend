@@ -6,7 +6,7 @@ const connection = mysql.createConnection ({
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'etutor',
 });
-connection.connect (function (err) {
+connection.connect ( err=> {
   if (err) throw err;
 });
 module.exports = connection;

@@ -5,3 +5,9 @@ exports.List_all_user = (req, res) => {
     res.json (users);
   });
 };
+exports.Login_user = async (req,res) => {
+    
+    Users.POST_LOGIN_USER((err,users)=>{
+
+    })
+}

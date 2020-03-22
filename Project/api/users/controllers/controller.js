@@ -1,4 +1,4 @@
-let Users = require('./model')
+let Users = require('../models/model')
 exports.List_all_user = (req,res)=>{
     Users.getAllUsers((err,users)=>{
         if(err)

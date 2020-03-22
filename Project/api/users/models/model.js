@@ -1,4 +1,4 @@
-let sql = require('../../config/mysqlConnection')
+let sql = require('../../../config/mysqlConnection')
 let Users = users =>{
     this.name = users.name
 }

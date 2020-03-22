@@ -37,4 +37,4 @@ Users.POST_LOGIN_USER = async result =>{
           }
     })
 }
-Users.module.exports = Users;
+module.exports = Users;

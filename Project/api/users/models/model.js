@@ -21,7 +21,7 @@ Users.getAllUsers = async result => {
       console.log ('err:', err);
       result (null, err);
     } else {
-      console.log ('tasks : ', res);
+      // console.log ('tasks : ', res);
       result (null, res);
     }
   });

@@ -56,7 +56,7 @@ Users.getUserById = (id, result) => {
 			console.log(err);
 			result(err, null);
 			return;
-		} else if (data != "") {
+		} else if (data !== "") {
 
 			result(null, data[0]);
 			return;

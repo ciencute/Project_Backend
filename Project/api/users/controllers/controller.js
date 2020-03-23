@@ -8,4 +8,9 @@ exports.List_all_user = (req, res) => {
   console.log('this is request:'+ req.body);
   res.json (res.body);
 };
+exports.Login_user = async (req,res) => {
+    
+    Users.POST_LOGIN_USER((err,users)=>{
 
+    })
+}

@@ -112,4 +112,18 @@ Users.GetAllStaff = result => {
 		}
 	})
 };
+
+Users.Create = (values,result) => {
+	let statement = 'INSERT INTO `users`(`name`, `gender`, `dob`, `email`, `image`, `created_by`, `created_at`, `updated_by`, `updated_at`, `password`, `status_id`, `active`, `role_id`) VALUES ?';
+	sql.query(statement,[values], function (err,data) {
+		if(err){
+			result(err,null);
+			return;
+		} else {
+			result(null,data);
+			return;
+		}
+
+	});
+};
 module.exports = Users;

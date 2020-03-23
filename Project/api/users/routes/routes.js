@@ -20,4 +20,5 @@ module.exports = app => {
   // retrieve all staff
   app.get('/staff', jwtMiddleware.checkToken,UserController.GetAllStaff);
   // app.get('/logout', UserController.Logout);
+  app.post('/createusers', UserController.CreateUser);
 }

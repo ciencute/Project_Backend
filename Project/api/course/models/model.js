@@ -19,19 +19,3 @@ const sql = require ('../../../config/mysqlConnection');
 //     }
 //   });
 // };
-var Task = function(task){
-  console.log(task);
-  this.status = task.status;
-};
-Task.createTask = function createUser(newTask,result){
-  sql.query("INSERT INTO tasks set ?",newTask,function(err,res){
-      if(err){
-          console.log(err);
-          result(err,null);
-      }
-      else{
-          console.log(res.insertId);
-          result(null,res.insertId);
-      }
-  });
-};

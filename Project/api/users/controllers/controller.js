@@ -48,9 +48,33 @@ exports.Login = (req,res)  => {
       // return the JWT token for the future API calls
     }
 
-
-
   })
 
-
 };
+
+// exports.Logout = (req,res) => {
+//   console.log("logging out");
+//   jwt.destroy(req.token);
+// }
+exports.GetUserById = function (req,res) {
+  if(!Number.isInteger(parseInt(req.params.id) )){
+    res.json({
+      "message": "error parameter",
+      success: false
+    })
+  }
+  else {
+    Users.getUserById(req.params.id, function (err,data) {
+      if(err) {
+        res.send(err);
+      }
+      else {
+        res.json(data);
+      }
+
+    })
+  }
+
+
+
+}

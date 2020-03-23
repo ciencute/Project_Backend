@@ -47,4 +47,25 @@ Users.validateLogin = (login, result) => {
 		result({kind: "not_found"}, null);
 	});
 };
+
+Users.getUserById = (id, result) => {
+	sql.query('select * from users where id = ?',[id] , function (err,data) {
+		if(err) {
+			console.log(err);
+			result(err,null);
+			return;
+		}
+		else if(data != ""){
+
+			result(null, data[0]);
+			return;
+		}
+		else  {
+			console.log("not found");
+			result(null, {message: "not found users" , success:false});
+			return;
+		}
+
+	});
+};
 module.exports = Users;

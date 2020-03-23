@@ -1,30 +1,50 @@
-const sql = require ('../../../config/mysqlConnection');
+const sql = require('../../../config/mysqlConnection');
 const Users = users => {
-  this.id = users.id;
-  this.name = users.name;
-  this.gender = users.gender;
-  this.dob = users.dob;
-  this.email = users.email;
-  this.image = users.image;
-  this.created_by = users.created_by;
-  this.created_at = users.created_at;
-  this.updated_by = users.updated_by;
-  this.updated_at = users.updated_at;
-  this.password = users.password;
-  this.status_id = users.status_id;
-  this.active = users.active;
-  this.role_id = users.role_id;
+	this.name = users.name;
 };
-Users.getAllUsers = async result => {
-  sql.query ('SELECT * FROM users',(err, res) => {
-    if (err) {
-      console.log ('err:', err);
-      result (null, err);
-    } else {
-      // console.log ('tasks : ', res);
-      result (null, res);
-    }
-  });
+Users.createUser = (newUser, result) => {
+	sql.query('INSERT INTO users set ?', newUser, (err, res) => {
+		if (err) {
+			console.log(err);
+			result(err, null);
+		} else {
+			console.log(res.insertId);
+			result(null, res.insertId);
+		}
+	});
+};
+Users.getAllUsers = result => {
+	sql.query('SELECT * FROM users', function (err, res) {
+		if (err) {
+			console.log('err:', err);
+			result(null, err);
+		} else {
+			// console.log ('tasks : ', res);
+			result(null, res);
+		}
+	});
+};
+
+Users.validateLogin = (login, result) => {
+	console.log(login);
+	let query = "SELECT * FROM users WHERE email = " + login.email + "and password = "+ login.password;
+	console.log(query);
+	sql.query('SELECT * FROM users WHERE email = ? and password = ?', [login.email, login.password], (err, res) => {
+		if (err) {
+			console.log("error: ", err);
+			result(err, null);
+			return;
+		}
+
+		if (res.length) {
+			console.log("login success ", res[0]);
+			result(null, res[0]);
+			return;
+		}
+
+		// not found users with the id
+		result({kind: "not_found"}, null);
+	});
 };
 Users.POST_LOGIN_USER = async result =>{
     sql.query('SELECT * FROM users WHERE email = ?, password = ?', (err, res)=>{

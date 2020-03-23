@@ -1,4 +1,6 @@
 const Users = require ('../models/model');
+let jwt = require("jsonwebtoken");
+let config = require("../../../config/jwtConfig");
 exports.List_all_user = (req, res) => {
   // Users.getAllUsers ((err, users) => {
   //   if (err) res.send (err);

@@ -37,7 +37,7 @@ exports.Login = (req,res)  => {
       // console.log(data);
       let token = jwt.sign({data } ,
           config.secret,
-          { expiresIn: '24h' // expires in 24 hours
+          { expiresIn: '1h' // expires in 24 hours
           }
       );
 

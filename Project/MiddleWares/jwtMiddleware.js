@@ -17,6 +17,7 @@ let checkToken = (req, res, next) => {
 				});
 			} else {
 				req.decoded = decoded;
+				// console.log(decoded);
 				next();
 			}
 		});
@@ -28,6 +29,25 @@ let checkToken = (req, res, next) => {
 	}
 };
 
+let getAuthenticatedUser = (req)  => {
+	let token = req.headers['x-access-token'] || req.headers['authorization']; // Express headers are auto converted to lowercase
+	if (token.startsWith('Bearer ')) {
+		// Remove Bearer from string
+		token = token.slice(7, token.length);
+	}
+	jwt.verify(token, config.secret, (err, decoded) => {
+		if (err) {
+			return  "";
+		} else {
+			return decoded;
+
+
+		}
+	});
+
+}
+
 module.exports = {
-	checkToken: checkToken
+	checkToken: checkToken,
+	getAuthenticatedUser: getAuthenticatedUser
 }

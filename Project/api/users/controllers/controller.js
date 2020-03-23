@@ -1,4 +1,5 @@
 const Users = require ('../models/model');
+const CONST =require('../../../Const/Constant');
 let jwt = require("jsonwebtoken");
 let middleWare = require("../../../MiddleWares/jwtMiddleware");
 let config = require("../../../config/jwtConfig");
@@ -74,7 +75,55 @@ exports.GetUserById = function (req,res) {
 
     })
   }
+};
 
+exports.GetAllTutors = function (req,res) {
+  Users.GetAllTutor(function (err,data) {
+    if(err) {
+      res.json(err);
+    }
+    else{
+      res.json({
+        success: true,
+        data: data
+      });
+    }
 
+  })
 
-}
+};
+exports.GetAllStudent = function (req,res) {
+  Users.GetAllStudent(function (err,data) {
+    if(err) {
+      res.json(err);
+    }
+    else{
+      res.json({
+        success: true,
+        number_of_record: data.length,
+        data: data,
+
+      });
+    }
+
+  })
+
+};
+exports.GetAllStaff = function (req,res) {
+  Users.GetAllStaff(function (err,data) {
+    if(err) {
+      res.json(err);
+    }
+    else{
+      res.json({
+        success: true,
+        number_of_record: data.length,
+        data: data,
+
+      });
+    }
+
+  })
+
+};
+

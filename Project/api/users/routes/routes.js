@@ -10,5 +10,8 @@ module.exports = app => {
 
   app.get('/users', jwtMiddleware.checkToken, UserController.List_all_user);
   app.get('/users/:id', jwtMiddleware.checkToken, UserController.GetUserById);
+  app.get('/tutors', jwtMiddleware.checkToken,UserController.GetAllTutors);
+  app.get('/students', jwtMiddleware.checkToken,UserController.GetAllStudent);
+  app.get('/staff', jwtMiddleware.checkToken,UserController.GetAllStaff);
   // app.get('/logout', UserController.Logout);
 }

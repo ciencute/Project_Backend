@@ -126,4 +126,24 @@ Users.Create = (values,result) => {
 
 	});
 };
+Users.Update = (id, newValues, result) => {
+	let statement = 'UPDATE `users` SET  ?  where id = ?';
+	sql.query(statement, [newValues, id], (err,data)=>{
+
+	});
+};
+
+Users.Delete = (id,result) => {
+	let statement  = 'DELETE FROM USERS WHERE id = ?';
+	sql.query(statement, [id], (err,data) => {
+		if(err) {
+			result(err,null);
+			return;
+		}
+		else {
+			result(null,data);
+			return;
+		}
+	})
+}
 module.exports = Users;

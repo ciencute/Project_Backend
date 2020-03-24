@@ -21,4 +21,7 @@ module.exports = app => {
   app.get('/staff', jwtMiddleware.checkToken,UserController.GetAllStaff);
   // app.get('/logout', UserController.Logout);
   app.post('/createusers', UserController.CreateUser);
-}
+  app.post('/users/update/:id', UserController.Update);
+  // delete user
+  app.post('/users/delete/:id', UserController.Delete);
+};

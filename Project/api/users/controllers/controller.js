@@ -141,5 +141,77 @@ exports.CreateUser = function (req, res) {
 
 	})
 
-}
+};
+
+exports.Update = (req ,res) => {
+	let id = req.params.id;
+	let value = req.body.data;
+
+	if (!Number.isInteger(parseInt(id))) {
+		res.json({
+			"message": "error parameter",
+			success: false
+		})
+	}
+	else {
+		Users.Update(id,value, (err,data) => {
+			if(err) {
+				res.json({
+					success:false,
+					message:err.sqlMessage
+					}
+				);
+			}
+			else if(data.affectedRows === 0) {
+				res.json({
+					success: false,
+					message:"not found user"
+				});
+			}
+			else {
+				res.json({
+					success: true,
+					message:data.message
+				});
+			}
+		});
+	}
+
+
+};
+
+exports.Delete = (req,res) => {
+	let id = req.params.id;
+
+	if (!Number.isInteger(parseInt(id))) {
+		res.json({
+			"message": "error parameter",
+			success: false
+		})
+	}
+	else{
+		Users.Delete(id, (err,data) => {
+			if(err) {
+				res.json({
+						success:false,
+						message:err.sqlMessage
+					}
+				);
+			}
+			else if(data.affectedRows === 0) {
+				res.json({
+					success: false,
+					message:"not found user"
+				});
+			}
+			else {
+				res.json({
+					success: true,
+					message:"delete user "+id+" successfully"
+				});
+			}
+		});
+	}
+
+};
 

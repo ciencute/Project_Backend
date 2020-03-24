@@ -1,7 +1,5 @@
 const Users = require('../models/model');
-const CONST = require('../../../Const/Constant');
 let jwt = require("jsonwebtoken");
-let middleWare = require("../../../MiddleWares/jwtMiddleware");
 let config = require("../../../config/jwtConfig");
 exports.List_all_user = (req, res) => {
 	// let u1 = req.decoded;

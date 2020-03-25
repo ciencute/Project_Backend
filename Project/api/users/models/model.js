@@ -145,5 +145,5 @@ Users.Delete = (id,result) => {
 			return;
 		}
 	})
-}
+};
 module.exports = Users;

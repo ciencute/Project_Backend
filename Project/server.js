@@ -15,4 +15,5 @@ app.get('/loz',(req,res) => {
 
 let routes = require('./api/users/routes/routes');
 routes(app);
+let regRoute = require('./api/tutorRegistration/routes/TutorRegistration.routes')(app);
 app.listen(port);

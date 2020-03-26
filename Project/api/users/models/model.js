@@ -16,9 +16,9 @@ Users.getAllUsers = result => {
 };
 
 Users.validateLogin = (login, result) => {
-	console.log(login);
+	// console.log(login);
 	let query = "SELECT * FROM users WHERE email = " + login.email + "and password = "+ login.password;
-	console.log(query);
+	// console.log(query);
 	sql.query('SELECT * FROM users WHERE email = ? and password = ?', [login.email, login.password], (err, res) => {
 		if (err) {
 			console.log("error: ", err);
@@ -27,7 +27,8 @@ Users.validateLogin = (login, result) => {
 		}
 
 		if (res.length) {
-			console.log("login success ", res[0]);
+			//hien thi response
+			// console.log("login success ", res[0]);
 			result(null, res[0]);
 			return;
 		}
@@ -47,4 +48,25 @@ Users.POST_LOGIN_USER = async result =>{
           }
     })
 }
-Users.module.exports = Users;
+
+Users.getUserById = (id, result) => {
+	sql.query('select * from users where id = ?',[id] , function (err,data) {
+		if(err) {
+			console.log(err);
+			result(err,null);
+			return;
+		}
+		else if(data != ""){
+
+			result(null, data[0]);
+			return;
+		}
+		else  {
+			console.log("not found");
+			result(null, {message: "not found users" , success:false});
+			return;
+		}
+
+	});
+};
+module.exports = Users;

@@ -8,7 +8,7 @@ module.exports = app => {
   // });
 
   // login with email and pass
-  app.get('/login', UserController.Login);
+  app.post('/login', UserController.Login);
 // retrieve all users
   app.get('/users', jwtMiddleware.checkToken, UserController.List_all_user);
   // retrieve all users by id

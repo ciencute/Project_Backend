@@ -42,7 +42,8 @@ exports.Login = (req, res) => {
 			res.json({
 				success: true,
 				message: 'Authentication successful!',
-				token: token
+				token: token,
+				data: data
 			});
 			// return the JWT token for the future API calls
 		}
